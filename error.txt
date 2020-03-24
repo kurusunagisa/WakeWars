@@ -1,0 +1,32 @@
+ ERROR  in ./store/user.js                                                      friendly-errors 22:04:41
+
+Module Error (from ./node_modules/eslint-loader/dist/cjs.js):                   friendly-errors 22:04:41
+
+C:\Users\17411\WakeWars\store\user.js
+  16:17  error    Missing space before function parentheses                                            spa
+ce-before-function-paren
+  24:15  error    Missing space before function parentheses                                            spa
+ce-before-function-paren
+  31:49  error    Expected parentheses around arrow function argument having a body with curly braces  arr
+ow-parens
+  33:16  error    Expected parentheses around arrow function argument having a body with curly braces  arr
+ow-parens
+  34:9   warning  Unexpected console statement                                                         no-
+console
+  37:7   warning  Unexpected console statement                                                         no-
+console
+  40:10  error    Missing space before function parentheses                                            spa
+ce-before-function-paren
+  45:2   error    Newline required at end of file but not found                                        eol
+-last
+
+✖ 8 problems (6 errors, 2 warnings)
+  6 errors and 0 warnings potentially fixable with the `--fix` option.
+
+                                                                                friendly-errors 22:04:41
+ @ ./.nuxt/store.js 34:22-51 38:4-43:6 38:46-43:5
+ @ ./.nuxt/index.js
+ @ ./.nuxt/client.js
+ @ multi eventsource-polyfill webpack-hot-middleware/client?reload=true&timeout=30000&ansiColors=&overlayS
+tyles=&name=client&path=/__webpack_hmr/client ./.nuxt/client.js
+                                                                                friendly-errors 22:04:41
