@@ -1,7 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  mode: 'universal',
+  //mode: 'universal',
+  mode: 'spa',
   /*
    ** Headers of the page
    */
@@ -45,10 +46,14 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    ['@nuxtjs/pwa',{icon: false}],
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+  manifest: {
+    name: 'WakeWars',
+    lang: 'ja'
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

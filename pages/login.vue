@@ -1,10 +1,23 @@
 /* eslint-disable */
+//ログインから戻ったときにアラート(successかerror)を出したい
 <template>
   <v-app>
     <v-layout column justify-center align-center>
       <v-flex xs12 sm8 md6>
+        <v-card>
+          <v-card-title class="headline">
+            ログイン
+          </v-card-title>
+        </v-card>
         <v-container>
+          <v-btn>
           <div id="firebaseui-auth-container" />
+          </v-btn>
+          <v-card>
+            <v-card-title>
+            {{ authstate=>uid }}
+            </v-card-title>
+          </v-card>
         </v-container>
       </v-flex>
     </v-layout>
@@ -36,6 +49,16 @@ export default {
 
     const ui = new firebaseui.auth.AuthUI(firebase.auth())
     ui.start('#firebaseui-auth-container', uiConfig)
+  },
+  async authstate (user){
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        var uid = user.uid
+      } else {
+        // User is signed out.
+        // ...
+      }
+    });
   }
 }
 </Script>

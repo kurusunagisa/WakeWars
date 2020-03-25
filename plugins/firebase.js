@@ -11,5 +11,6 @@ if (!firebase.apps.length) {
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
   })
 }
-
+export const storage = firebase.storage()
+export const db = firebase.firestore()
 export default firebase
