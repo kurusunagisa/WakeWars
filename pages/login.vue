@@ -60,15 +60,5 @@ export default {
       });
     }
   },
-  async authstate (user){
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        var uid = user.uid
-      } else {
-        // User is signed out.
-        // ...
-      }
-    });
-  }
 }
 </Script>

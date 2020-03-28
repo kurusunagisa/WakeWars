@@ -12,10 +12,9 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn color="primary" nuxt to="/wakeup">
+            <v-btn color="primary" @click="click">
               起きたよ
             </v-btn>
-            <v-btn @click="click">クリック</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -26,18 +25,19 @@
 <script>
 import firebase from '@/plugins/firebase'
 export default {
-  data: () => ({
-    ranking: []
-    }),
+  middleware: 'auth',
   methods: {
     click() {
-      /*const response = this.$axios.$post("https://www.amazon.co.jp")
-        .then( response => {
-          window.location.href = "/login"
-        })
-        .catch( error => {
-          window.location.href = "/ranking"
-        })*/
+      const date = new Date()
+      const basedate = new Date()
+      basedate.setHours(7);
+      basedate.setMinutes(0);
+      basedate.setSeconds(0);
+      basedate.setMilliseconds(0);
+      //console.log(date.getTime());
+      //console.log(basedate.getTime());
+      //console.log(date.getTime() - basedate.getTime());
+      const diff = date.getTime() - basedate.getTime();
       var user = firebase.auth().currentUser;
       var uid,username;
 
@@ -45,22 +45,15 @@ export default {
         uid = user.uid;  // The user's ID, unique to the Firebase
         username = user.displayName;
       }
-      console.log(uid)
+      const dbName = basedate.getFullYear().toString() + basedate.getMonth().toString() + basedate.getDate().toString()
+      //console.log(dbName)
+      //console.log(uid)
       const db = firebase.firestore()
-      const date = new Date()
-      const basedate = new Date()
-      basedate.setHours(7);
-      basedate.setMinutes(0);
-      basedate.setSeconds(0);
-      basedate.setMilliseconds(0);
-      console.log(date.getTime());
-      console.log(basedate.getTime());
-      console.log(date.getTime() - basedate.getTime());
-      if(date.getTime() - basedate.getTime() > 0){
-        db.collection("rank").add({
+      if(diff >= 0){
+        db.collection(dbName).add({
           name: username,
           id: uid,
-          time: date.getTime()
+          time:(new Date(diff).toISOString().slice(11, -1)).toString()
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
@@ -68,23 +61,11 @@ export default {
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
+        window.location.href = "/wakeup"
       }else{
-        //時間前ページに移動する
         alert("時間前だよ")
         console.log("時間前だよ")
       }
-      var ranking
-      db.collection("rank").get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots]
-          console.log(doc.id, " => ", doc.data());
-        });
-        ranking = querySnapshot.docs
-        console.log(querySnapshot.docs)
-      });
-      this.ranking = ranking
-      console.log("this" , this.ranking)
-    //window.location.href = "/wakeup"
     }
   }
 }

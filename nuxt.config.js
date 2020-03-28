@@ -51,10 +51,10 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
-  /*manifest: {
+  manifest: {
     name: 'WakeWars',
     lang: 'ja'
-  },*/
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -90,7 +90,4 @@ export default {
      */
     extend(config, ctx) {}
   },
-  router: {
-    middleware: 'auth'
-  }
 }
