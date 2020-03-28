@@ -46,14 +46,15 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    ['@nuxtjs/pwa',{icon: false}],
+    //['@nuxtjs/pwa', { icon: false }],
+    '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
-  manifest: {
+  /*manifest: {
     name: 'WakeWars',
     lang: 'ja'
-  },
+  },*/
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -88,5 +89,8 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  router: {
+    middleware: 'auth'
   }
 }
